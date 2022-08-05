@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +45,25 @@ Route::prefix('/admin')->group(function(){
         Route::match(['get','post'],'update-vendor-details/{slug}',[AdminController::class,'updateVendorDetails']);
         // check Admin Password
         Route::post('check-admin-password',[AdminController::class,"checkPassword"]);
-
+        // view Admins / subadmins / vendors
+        Route::get('admins/{slug?}',[AdminController::class, 'admins']);
+        // view vendor details
+        Route::get('view-vendor-details/{id}',[AdminController::class,'viewVendorDetails']);
+        // admin status update
+        Route::post('update-admin-status',[AdminController::class,"updateAdminStatus"]);
         // admin logout route
         Route::get('logout',[AdminController::class,'logout']);
+        
+        // section route 
+        Route::get('sections',[SectionController::class,"section"]);
+        // section status update
+        Route::post('update-section-status',[SectionController::class,"updateSectionStatus"]);
+        Route::get('delete-section/{id}',[SectionController::class,'deleteSection']);
+        Route::match(['get','post'],'add-edit-section/{id?}',[SectionController::class,'editSection']);
+        // categories route
+        Route::get('categories',[CategoryController::class,'categories']);
+        Route::post('update-category-status',[CategoryController::class,"updateCategoryStatus"]);
+        Route::match(['get','post'],'add-edit-category/{id?}',[CategoryController::class,'editCategory']);
+        Route::get('/append-categories-lavel',[CategoryController::class,'appendCategoryLavel']);
     });
 });

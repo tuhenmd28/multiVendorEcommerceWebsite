@@ -1,0 +1,38 @@
+.activeClass{
+    color: white !important;
+    background-color:#4b49ac !important;
+}
+.activeClass1{
+    color: white !important;
+    background-color:#4b49ac !important;
+}
+.libgcolor {
+    background-color: rgb(233 236 239) !important;
+    color: black !important;
+}
+.sidebar .nav.sub-menu .nav-item .nav-link.active {
+    color: #000000 !important;
+    background: transparent;
+}
+.sidebar .nav.sub-menu .nav-item .nav-link.activeClass.active {
+    color: #fff !important;
+}
+.sidebar .nav.sub-menu.libgcolor .nav-item .nav-link {
+    color: rgb(0, 0, 0);
+}
+.sidebar .nav.sub-menu.libgcolor .nav-item .nav-link:hover {
+    color: #fff !important;
+    background:#4b49ac !important ;
+    transition: all .2s;
+}
+.sidebar .nav.sub-menu .nav-item {
+    padding: 0;
+    border-radius: 8px;
+    color: white;
+}
+select.form-control {
+    padding: .4375rem .75rem;
+    border: 0;
+    outline: 1px solid #CED4DA;
+    color: #000000 !important;
+}
