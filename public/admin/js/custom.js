@@ -130,7 +130,8 @@ $(document).ready(function(){
                 'Your file has been deleted.',
                 'success'
               )
-              location = "delete-"+module+"/"+moduleId;
+            //   alert("delete-"+module+"/"+moduleId);
+              location = "/admin/delete-"+module+"/"+moduleId;
             }
           })
         
@@ -155,7 +156,25 @@ $(document).ready(function(){
         })
 
     })
+    // if ($('#section_id').val()) {
 
+    //     let section_id = $('#section_id').val()
+    //     $.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         type:'get',
+    //         url:'/admin/append-categories-lavel',
+    //         data:{section_id:section_id},
+    //         success:function(resp){
+    //             $('.appendCategoriesLavel').html(resp);
+    //         },
+    //         error:function(){
+    //             alert("error");
+    //         }
+    //     })
+        
+    // }
     $('.nav-link').parents('.collapse').removeClass('show');
     // $('.nav-link').parent().removeClass('active');
     $('.nav-link.activeClass').parents('.collapse').addClass('show');

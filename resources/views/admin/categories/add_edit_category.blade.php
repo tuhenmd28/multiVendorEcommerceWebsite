@@ -66,7 +66,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="category_name">Category Name</label>
-                      <input type="text" value="{{ empty($category['category_name'])? old('category_name'):$category['category_name'] }}" name="category_name" class="form-control" id="category_name" placeholder="Enter category name" required>
+                      <input type="text" value="{{ empty($category['category_name'])? old('category_name'):$category['category_name'] }}" name="category_name" class="form-control" id="category_name" placeholder="Enter category name"  >
                     </div>
                     <div class="form-group">
                       <label for="section_id">Select Section </label>
@@ -83,32 +83,41 @@
                       @include('admin.categories.append_categories_lavel')
                     </div>
                     <div class="form-group">
+                     
                       <label for="category_image">Category Image</label>
                       <input type="file"  name="category_image" class="form-control" id="category_image" >
+                      <input type="hidden" name="currentCategoryImage" value="{{ empty($category['category_image'])? old('category_image'):$category['category_image'] }}">
+                      @if (!empty($category['category_image']))
+                      <a style="padding:10px 0;" target="_blank"  href="{{ url('fontend/images/category_images/'.$category['category_image']) }}" > View image
+                    </a>
+                    <a module="category-image" moduleId="{{ $category['id'] }}" class="confirmDelete" href="javascript:void(0)">
+                      Delete Image</a>
+                     @endif
+                     
                     </div>
                     <div class="form-group">
                       <label for="category_discount">Category Discount</label>
-                      <input type="text" value="{{ empty($category['category_discount'])? old('category_discount'):$category['category_discount'] }}" name="category_discount" class="form-control" id="category_discount" placeholder="Enter category name" required>
+                      <input type="text" value="{{ empty($category['category_discount'])? old('category_discount'):$category['category_discount'] }}" name="category_discount" class="form-control" id="category_discount" placeholder="Enter category name"  >
                     </div>
                     <div class="form-group">
                       <label for="category_description">Category Description</label>
-                      <textarea name="category_description" id="category_description"  rows="3" class="form-control"></textarea>
+                      <textarea name="description" id="category_description"  rows="3" class="form-control"> {{ empty($category['description'])? old('description'):$category['description'] }} </textarea>
                     </div>
                     <div class="form-group">
                       <label for="url">Category URL</label>
-                      <input type="text" value="{{ empty($category['url'])? old('url'):$category['url'] }}" name="url" class="form-control" id="url" placeholder="Enter category URL" required>
+                      <input type="text" value="{{ empty($category['url'])? old('url'):$category['url'] }}" name="url" class="form-control" id="url" placeholder="Enter category URL"  >
                     </div>
                     <div class="form-group">
                       <label for="meta_title">Meta Title</label>
-                      <input type="text" value="{{ empty($category['meta_title'])? old('meta_title'):$category['meta_title'] }}" name="meta_title" class="form-control" id="meta_title" placeholder="Enter meta title" required>
+                      <input type="text" value="{{ empty($category['meta_title'])? old('meta_title'):$category['meta_title'] }}" name="meta_title" class="form-control" id="meta_title" placeholder="Enter meta title"  >
                     </div>
                     <div class="form-group">
                       <label for="meta_descriptin">	Meta Descriptin</label>
-                      <input type="text" value="{{ empty($category['meta_descriptin'])? old('meta_descriptin'):$category['meta_descriptin'] }}" name="meta_descriptin" class="form-control" id="meta_descriptin" placeholder="Enter Meta Descriptin" required>
+                      <input type="text" value="{{ empty($category['meta_descriptin'])? old('meta_descriptin'):$category['meta_descriptin'] }}" name="meta_descriptin" class="form-control" id="meta_descriptin" placeholder="Enter Meta Descriptin"  >
                     </div>
                     <div class="form-group">
                       <label for="meta_keywords">Meta Keywords</label>
-                      <input type="text" value="{{ empty($category['meta_keywords'])? old('meta_keywords'):$category['meta_keywords'] }}" name="meta_keywords" class="form-control" id="meta_keywords" placeholder="Enter Meta Keywords" required>
+                      <input type="text" value="{{ empty($category['meta_keywords'])? old('meta_keywords'):$category['meta_keywords'] }}" name="meta_keywords" class="form-control" id="meta_keywords" placeholder="Enter Meta Keywords"  >
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light" type="reset">Cancel</button>
