@@ -9,10 +9,10 @@
               <div class="card-body">
                 <h4 class="card-title">{{ $type }}</h4>
                 <p class="card-description">
-                  Add class <code>.table-bordered</code>
+                  
                 </p>
                 <div class="table-responsive pt-3">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered" id="adminTable">
                     <thead>
                       <tr>
                         <th>
@@ -75,10 +75,10 @@
                             <td>
                               @if ($admin['type'] == 'vendor')
                                 <a href="{{ url('admin/view-vendor-details/'.$admin['id']) }}">
-                                  <i style="font-size: 25px;" class="mdi mdi-file-document"></i></a>  
+                                  <i style="font-size: 25px;" class="mdi mdi-file-document"></i></a>
                               @endif
                             </td>
-                          </tr>  
+                          </tr>
                         @endforeach
                     </tbody>
                   </table>
@@ -87,8 +87,8 @@
             </div>
           </div>
      </div>
-           
- 
+
+
 @include('admin.layout.footer')
 </div>
 </div>

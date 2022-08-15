@@ -76,7 +76,7 @@ class AdminController extends Controller
     public function UpdateAdminDetails(Request $request)
     {
         Session::put('page','UpdateAdminDetails');
-        
+
         if ($request->isMethod('post')) {
             $data = $request->all();
             // echo "<pre>";print_r($data);die;
@@ -91,7 +91,7 @@ class AdminController extends Controller
                 'admin-number.numeric' => 'valid mobile is required',
             ];
             $this->validate($request, $rules, $customMessage);
-            // update admin image 
+            // update admin image
             if ($request->hasFile('admin-image')) {
                 $imageTmp = $request->file('admin-image');
                 if ($imageTmp->isValid()) {
@@ -111,7 +111,7 @@ class AdminController extends Controller
             } else {
                 $imageName = '';
             }
-            // update admin details 
+            // update admin details
             Admin::where('id', Auth::guard('admin')->user()->id)->update(["name" => $data['admin-name'], "mobile" => $data['admin-number'], "image" => $imageName]);
             return redirect()->back()->with("success_message", "Admin details update successfully");
         }
@@ -156,7 +156,7 @@ class AdminController extends Controller
                     'vendorPincode.numeric' => 'valid Pincode is required',
                 ];
                 $this->validate($request, $rules, $customMessage);
-                // update admin image 
+                // update admin image
                 if ($request->hasFile('vendorImage')) {
                     $imageTmp = $request->file('vendorImage');
                     if ($imageTmp->isValid()) {
@@ -176,7 +176,7 @@ class AdminController extends Controller
                 } else {
                     $imageName = '';
                 }
-                // update in Admin table 
+                // update in Admin table
                 Admin::where('id', Auth::guard('admin')->user()->id)->update(["name" => $data['vendorName'], "mobile" => $data['vendorMobile'], "image" => $imageName]);
 
                 // update in Vender table
@@ -187,12 +187,12 @@ class AdminController extends Controller
             $vendorDetails = Vendor::where('id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
         } else if ($slug == "business") {
            Session::put('page','business');
-            
+
             $getId = Auth::guard('admin')->user()->vendor_id;
             $getImg = VendorsBusinessDetail::find($getId)->value('address_proof_image');
             if ($request->isMethod('post')) {
                 $data = $request->all();
-                $rules = [ 
+                $rules = [
                     "shop_name" => "required|regex:/^[\pL\s\-]+$/u",
                     "shop_address" => "required",
                     "shop_city" => "required",
@@ -212,10 +212,10 @@ class AdminController extends Controller
                     'shop_pincode.required' => 'Pincode is required',
                     'shop_mobile.numeric' => 'shop mobile is required',
                     'shop_pincode.numeric' => 'shop Pincode is required',
-                    
+
                 ];
                 $this->validate($request, $rules, $customMessage);
-                // update admin image 
+                // update admin image
                 if ($request->hasFile('address_proof_image')) {
                     $imageTmp = $request->file('address_proof_image');
                     if ($imageTmp->isValid()) {
@@ -235,14 +235,14 @@ class AdminController extends Controller
                 } else {
                     $imageName = '';
                 }
-            
+
 
             // update in vendors_business_details table
             VendorsBusinessDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->update([
                 "shop_name" => $data['shop_name'],
                 "shop_address" => $data['shop_address'],
                 "shop_city" => $data['shop_city'],
-                "shop_state" => $data['shop_state'], 
+                "shop_state" => $data['shop_state'],
                 "shop_country" => $data['shop_country'],
                 "shop_pincode" => $data['shop_pincode'],
                 "shop_mobile" => $data['shop_mobile'],
@@ -291,10 +291,10 @@ class AdminController extends Controller
             }
 
             $vendorDetails = VendorsBankDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
-            
+
         }
        $countres = Country::where('status',1)->get()->toArray();
-       
+
         return view('admin.setting.update-vendor-details', compact('slug', 'vendorDetails','countres'));
     }
     public function admins($type = null)
@@ -313,6 +313,7 @@ class AdminController extends Controller
     }
     public function viewVendorDetails($id)
     {
+        Session::put('page', 'view_vendor');
        $vendor = Admin::with("viewPorsonal","viewBusiness","viewBank")->where('id',$id)->first();
        $vendor = json_decode(json_encode($vendor),true);
        return view('admin.admins.view-vendor-details')->with(compact('vendor'));

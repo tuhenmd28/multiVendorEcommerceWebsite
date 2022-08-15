@@ -32,7 +32,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">{{ $title }}</h4>
-                
+
                   @if (Session::has('success_message'))
                   <div class="alert  alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -59,25 +59,25 @@
                    @if (empty($section['id']))
                   action="{{ url('/admin/add-edit-section') }}"
                   @else
-                  action="{{ url('/admin/add-edit-section/'.$section['id']) }}"  
+                  action="{{ url('/admin/add-edit-section/'.$section['id']) }}"
                   @endif  enctype="multipart/form-data">
                     @csrf
                     {{ $section['name'] }}
                     <div class="form-group">
                       <label for="section-name">Section Name</label>
                       <input type="text" value="{{ empty($section['name'])?'':$section['name'] }}" name="section-name" class="form-control" id="section-name" placeholder="Enter Section name" required>
-                      
+
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light" type="reset">Cancel</button>
+                    <button type="reset" class="btn btn-light" type="reset">Cancel</button>
                   </form>
                 </div>
               </div>
             </div>
      </div>
-           
- 
+
+
 @include('admin.layout.footer')
 </div>
 </div>

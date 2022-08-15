@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ use App\Http\Controllers\Admin\SectionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin/login');
 });
 
 Route::get('/dashboard', function () {
@@ -32,7 +34,7 @@ Route::prefix('/admin')->group(function(){
     // admin login route
     Route::get('login', [ AdminController::class,'login'] );
     Route::post('login', [ AdminController::class,'login'] );
-    
+
     Route::group(['middleware'=>['admin']],function(){
         //  admin dashboard route
         Route::get('dashboard', [ AdminController::class,'index'] );
@@ -53,8 +55,8 @@ Route::prefix('/admin')->group(function(){
         Route::post('update-admin-status',[AdminController::class,"updateAdminStatus"]);
         // admin logout route
         Route::get('logout',[AdminController::class,'logout']);
-        
-        // section route 
+
+        // section route
         Route::get('sections',[SectionController::class,"section"]);
         // section status update
         Route::post('update-section-status',[SectionController::class,"updateSectionStatus"]);
@@ -67,5 +69,26 @@ Route::prefix('/admin')->group(function(){
         Route::get('/append-categories-lavel',[CategoryController::class,'appendCategoryLavel']);
         Route::get('delete-category/{id}',[CategoryController::class,"deleteCategory"]);
         Route::get('delete-category-image/{id}',[CategoryController::class,"deleteCategoryImage"]);
-    });
+        // brands Route
+        Route::get('brands',[BrandController::class,"brand"]);
+        // Brands status update
+        Route::post('update-brand-status',[BrandController::class,"updateBrandStatus"]);
+        Route::get('delete-brand/{id}',[BrandController::class,'deleteBrand']);
+        Route::match(['get','post'],'add-edit-brand/{id?}',[BrandController::class,'editBrand']);
+        // Products Route
+        Route::get('products',[ProductsController::class,"products"]);
+        // Brands status update
+        Route::post('update-product-status',[ProductsController::class,"updateProductStatus"]);
+        Route::get('delete-product/{id}',[ProductsController::class,'deleteProduct']);
+        });
+        Route::match(['get','post'],'add-edit-product/{id?}',[ProductsController::class,"addEditProduct"]);
+        Route::get('delete-product-image/{id}',[ProductsController::class,"deleteProductImage"]);
+        Route::get('delete-product-video/{id}',[ProductsController::class,"deleteProductVideo"]);
+        // add attributes
+        Route::match(['get','post'],'add-edit-attributes/{id}',[ProductsController::class,'addAttributes']);
+        Route::match(['get','post'],'edit-attribute/{id}',[ProductsController::class,'editAttribute']);
+        // add product Image
+        Route::match(['get','post'],'add-edit-images/{id}',[ProductsController::class,'addImage']);
+        Route::post('update-image-status',[ProductsController::class,'updateProductImageStatus']);
+        Route::get('delete-image/{id}',[ProductsController::class,'deleteImage']);
 });

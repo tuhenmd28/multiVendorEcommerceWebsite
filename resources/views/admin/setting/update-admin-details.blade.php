@@ -33,7 +33,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Update Admin Details</h4>
-                
+
                   @if (Session::has('success_message'))
                   <div class="alert  alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -69,7 +69,7 @@
                     <div class="form-group">
                       <label for="Admin-name">Name</label>
                       <input type="text" value="{{ Auth::guard('admin')->user()->name }}" name="admin-name" class="form-control" id="Admin-name" placeholder="Enter your name" required>
-                      
+
                     </div>
                     <div class="form-group">
                       <label for="admin-number">Mobile Number</label>
@@ -90,14 +90,14 @@
                       </label>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <button type="reset" class="btn btn-light">Cancel</button>
                   </form>
                 </div>
               </div>
             </div>
      </div>
-           
- 
+
+
 @include('admin.layout.footer')
 </div>
 </div>

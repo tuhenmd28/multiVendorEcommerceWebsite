@@ -2,7 +2,7 @@
     <ul class="nav">
       <li class="nav-item">
         <a @if (Session::get('page')== 'dashboard')
-        class="nav-link activeClass1" 
+        class="nav-link activeClass1"
         @else
         class="nav-link"
         @endif href="{{ url('/admin/dashboard') }}">
@@ -14,7 +14,7 @@
       @if (Auth::guard('admin')->user()->type == 'vendor')
       <li class="nav-item ">
         <a @if (Session::get('page')== 'personal'|| Session::get('page')== 'business'||Session::get('page')== 'bank')
-        class="nav-link activeClass1" 
+        class="nav-link activeClass1"
         @else
         class="nav-link"
         @endif data-toggle="collapse" href="#ui-vendor" aria-expanded="false" aria-controls="ui-vendor">
@@ -25,28 +25,28 @@
         <div class="collapse" id="ui-vendor">
           <ul class="nav flex-column sub-menu libgcolor">
             <li class="nav-item"> <a @if (Session::get('page')== 'personal')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/update-vendor-details/personal') }}">personal Details</a></li>
             <li class="nav-item"> <a @if (Session::get('page')== 'business')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/update-vendor-details/business') }}">Business Details</a></li>
             <li class="nav-item"> <a @if (Session::get('page')== 'bank')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/update-vendor-details/bank') }}">Bank Details</a></li>
-            
+
           </ul>
         </div>
-      </li> 
+      </li>
       @else
       <li class="nav-item">
         <a @if (Session::get('page')== 'UpdateAdminDetails'|| Session::get('page')== 'UpdateAdminPassword')
-        class="nav-link activeClass1" 
+        class="nav-link activeClass1"
         @else
         class="nav-link"
         @endif  data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
@@ -57,22 +57,22 @@
         <div class="collapse" id="ui-settings">
           <ul class="nav flex-column sub-menu libgcolor">
             <li class="nav-item"> <a @if (Session::get('page')== 'UpdateAdminPassword')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/update-admin-password') }}">Update Password</a></li>
             <li class="nav-item"> <a @if (Session::get('page')== 'UpdateAdminDetails')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/update-admin-details') }}">Update Details</a></li>
-            
+
           </ul>
         </div>
-      </li>     
+      </li>
       <li class="nav-item">
         <a @if (Session::get('page')== 'view_admin' ||Session::get('page')== 'view_subadmin'||Session::get('page')== 'view_vendor'||Session::get('page')== 'view_all')
-        class="nav-link activeClass1" 
+        class="nav-link activeClass1"
         @else
         class="nav-link"
         @endif data-toggle="collapse" href="#ui-admin" aria-expanded="false" aria-controls="ui-admin">
@@ -83,29 +83,29 @@
         <div class="collapse " id="ui-admin">
           <ul class="nav flex-column sub-menu libgcolor">
             <li class="nav-item"> <a @if (Session::get('page')== 'view_admin')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/admins/admin') }}">Admin</a></li>
             <li class="nav-item"> <a @if (Session::get('page')== 'view_subadmin')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/admins/subadmin') }}">subadmin</a></li>
             <li class="nav-item"> <a @if (Session::get('page')== 'view_vendor')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/admins/vendor') }}">Vendor</a></li>
             <li class="nav-item"> <a @if (Session::get('page')== 'view_all')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/admins') }}">All</a></li>
-            
+
           </ul>
         </div>
-      </li>     
+      </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-user">
           <i class="icon-layout menu-icon"></i>
@@ -118,10 +118,10 @@
             <li class="nav-item"> <a class="nav-link" href="{{ url('admin/subscribers') }}">Subscribers</a></li>
           </ul>
         </div>
-      </li> 
+      </li>
       <li class="nav-item">
-        <a @if (Session::get('page')== 'sections'|| Session::get('page')== 'categories'||Session::get('page')== 'producets')
-        class="nav-link activeClass1" 
+        <a @if (Session::get('page')== 'sections'|| Session::get('page')== 'categories'||Session::get('page')== 'products' || Session::get('page')== 'brands')
+        class="nav-link activeClass1"
         @else
         class="nav-link"
         @endif data-toggle="collapse" href="#ui-category" aria-expanded="false" aria-controls="ui-category">
@@ -132,23 +132,30 @@
         <div class="collapse" id="ui-category">
           <ul class="nav flex-column sub-menu libgcolor">
             <li class="nav-item"> <a @if (Session::get('page')== 'sections')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/sections') }}">Sections</a></li>
             <li class="nav-item"> <a @if (Session::get('page')== 'categories')
-              class="nav-link activeClass" 
+              class="nav-link activeClass"
               @else
               class="nav-link"
               @endif href="{{ url('admin/categories') }}">Categories</a></li>
-            <li class="nav-item"> <a @if (Session::get('page')== 'producets')
-              class="nav-link activeClass" 
+              {{-- {{Session::get('page')}} --}}
+            <li class="nav-item"> <a @if (Session::get('page')=='brands')
+              class="nav-link activeClass"
               @else
               class="nav-link"
-              @endif href="{{ url('admin/producets') }}">Products</a></li>
+              @endif href="{{ url('admin/brands') }}">Brands</a></li>
+
+            <li class="nav-item"> <a @if (Session::get('page')== 'products')
+              class="nav-link activeClass"
+              @else
+              class="nav-link"
+              @endif href="{{ url('admin/products') }}">Products</a></li>
           </ul>
         </div>
-      </li>       
+      </li>
       @endif
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">

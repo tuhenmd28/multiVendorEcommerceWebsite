@@ -34,7 +34,7 @@
                 <div class="card-body">
                     {{-- {{ Session::get('page') }} --}}
                   <h4 class="card-title">{{ $title }}</h4>
-                
+
                   @if (Session::has('success_message'))
                   <div class="alert  alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -61,7 +61,7 @@
                    @if (empty($category['id']))
                   action="{{ url('/admin/add-edit-category') }}"
                   @else
-                  action="{{ url('/admin/add-edit-category/'.$category['id']) }}"  
+                  action="{{ url('/admin/add-edit-category/'.$category['id']) }}"
                   @endif  enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -83,7 +83,7 @@
                       @include('admin.categories.append_categories_lavel')
                     </div>
                     <div class="form-group">
-                     
+
                       <label for="category_image">Category Image</label>
                       <input type="file"  name="category_image" class="form-control" id="category_image" >
                       <input type="hidden" name="currentCategoryImage" value="{{ empty($category['category_image'])? old('category_image'):$category['category_image'] }}">
@@ -93,7 +93,7 @@
                     <a module="category-image" moduleId="{{ $category['id'] }}" class="confirmDelete" href="javascript:void(0)">
                       Delete Image</a>
                      @endif
-                     
+
                     </div>
                     <div class="form-group">
                       <label for="category_discount">Category Discount</label>
@@ -120,14 +120,14 @@
                       <input type="text" value="{{ empty($category['meta_keywords'])? old('meta_keywords'):$category['meta_keywords'] }}" name="meta_keywords" class="form-control" id="meta_keywords" placeholder="Enter Meta Keywords"  >
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light" type="reset">Cancel</button>
+                    <button type="reset" class="btn btn-light" type="reset">Cancel</button>
                   </form>
                 </div>
               </div>
             </div>
      </div>
-           
- 
+
+
 @include('admin.layout.footer')
 </div>
 </div>

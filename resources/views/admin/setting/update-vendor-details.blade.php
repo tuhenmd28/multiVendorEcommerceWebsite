@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section('content') 
+@section('content')
 <div class="main-panel">
     <div class="content-wrapper">
       <div class="row">
@@ -33,7 +33,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Update personal Details</h4>
-            
+
               @if (Session::has('success_message'))
               <div class="alert  alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -86,7 +86,7 @@
                     @foreach ($countres as $country)
                       <option @if ($country['country_name']== $vendorDetails['country'] )
                           selected
-                      @endif value="{{ $country['country_name'] }}">{{ $country['country_name'] }}</option>  
+                      @endif value="{{ $country['country_name'] }}">{{ $country['country_name'] }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -113,7 +113,7 @@
                   </label>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                <button type="reset" class="btn btn-light">Cancel</button>
               </form>
             </div>
           </div>
@@ -125,7 +125,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Update Business Details</h4>
-            
+
               @if (Session::has('success_message'))
               <div class="alert  alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -158,7 +158,7 @@
                   <label for="shop-name">Shop Name</label>
                   <input type="text" value="{{ $vendorDetails['shop_name'] }}" name="shop_name" class="form-control" id="shop-name" placeholder="Enter Shop name" required>
                 </div>
-             
+
                 <div class="form-group">
                   <label for="shop_address">Shop Address</label>
                   <input type="text" value="{{ $vendorDetails['shop_address'] }}" name="shop_address" class="form-control" id="shop_address" placeholder="Enter shop address" required>
@@ -179,7 +179,7 @@
                     @foreach ($countres as $country)
                       <option @if ($country['country_name']== $vendorDetails['shop_country'] )
                           selected
-                      @endif value="{{ $country['country_name'] }}">{{ $country['country_name'] }}</option>  
+                      @endif value="{{ $country['country_name'] }}">{{ $country['country_name'] }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -222,7 +222,7 @@
                   @if (!empty($vendorDetails['address_proof_image']))
                       <a target="_blank" class="my-3 d-inline-block" href="{{ url('admin/images/proof/'.$vendorDetails['address_proof_image']) }}">View image</a>
                   <input type="hidden" name="current_address_proof_image" value="{{ $vendorDetails['address_proof_image'] }}">
-                  @endif 
+                  @endif
                 </div>
                 <div class="form-check form-check-flat form-check-primary">
                   <label class="form-check-label">
@@ -231,7 +231,7 @@
                   </label>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                <button type="reset" class="btn btn-light">Cancel</button>
               </form>
             </div>
           </div>
@@ -244,7 +244,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Update Bank Details</h4>
-            
+
               @if (Session::has('success_message'))
               <div class="alert  alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -276,7 +276,7 @@
                 <div class="form-group">
                   <label for="account_holder_name">Account holder Name</label>
                   <input type="text" value="{{ $vendorDetails['account_holder_name']}}" name="account_holder_name" class="form-control" id="account_holder_name" placeholder="Enter your account holser name">
-                  
+
                 </div>
                 <div class="form-group">
                   <label for="bank_name">Bank name</label>
@@ -290,7 +290,7 @@
                   <label for="bank_ifsc_code">Bank IFSC code</label>
                   <input type="text" value="{{ $vendorDetails['bank_ifsc_code']}}" name="bank_ifsc_code" class="form-control" id="bank_ifsc_code" placeholder="Enter your Bank IFSC code" >
                 </div>
-            
+
                 <div class="form-check form-check-flat form-check-primary">
                   <label class="form-check-label">
                     <input type="checkbox" class="form-check-input">
@@ -298,16 +298,16 @@
                   </label>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                <button type="reset" class="btn btn-light">Cancel</button>
               </form>
             </div>
           </div>
         </div>
  </div>
       @endif
-      
-           
- 
+
+
+
 @include('admin.layout.footer')
 </div>
 </div>

@@ -7,8 +7,7 @@
         <div class="col-md-12 grid-margin">
           <div class="row">
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-              <h3 class="font-weight-bold">settings</h3>
-              {{-- <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6> --}}
+              <h3 class="font-weight-bold">Brand</h3>
             </div>
             <div class="col-12 col-xl-4">
              <div class="justify-content-end d-flex">
@@ -32,10 +31,8 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Update Admin Password</h4>
-                  {{-- <p class="card-description">
-                    Basic form layout
-                  </p> --}}
+                  <h4 class="card-title">{{ $title }}</h4>
+
                   @if (Session::has('success_message'))
                   <div class="alert  alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -48,37 +45,40 @@
                     <strong>Error!</strong> {{ Session::get('error_message') }}
                   </div>
                   @endif
-                  <form class="forms-sample" method="POST" action="{{ url('/admin/update-admin-password') }}">
+                  @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                  </div>
+                  @endif
+                  <form class="forms-sample" method="POST"
+                   @if (empty($brand['id']))
+                  action="{{ url('/admin/add-edit-brand') }}"
+                  @else
+                  action="{{ url('/admin/add-edit-brand/'.$brand['id']) }}"
+                  @endif  enctype="multipart/form-data">
                     @csrf
+                    {{ $brand['name'] }}
                     <div class="form-group">
-                      <label >Username Or Email</label>
-                      <input  class="form-control" value="{{ $userDetails['email'] }}" readonly>
-                    </div>
-                    <div class="form-group">
-                      <label > Admin Type</label>
-                      <input value="{{ $userDetails['type'] }}" readonly class="form-control" >
+                      <label for="brand-name">Brand Name</label>
+                      <input type="text" value="{{ empty($brand['name'])?'':$brand['name'] }}" name="brand-name" class="form-control" id="brand-name" placeholder="Enter brand name" required>
+
                     </div>
                     <div class="form-group">
-                      <label for="current_password">Enter Current Password</label>
-                      <input type="password" name="currentPassword" class="form-control" id="current_password" placeholder="Current Password">
-                      <span id="currentPassword"></span>
+                      <label for="brand-name">Brand image</label>
+                      <input type="file" name="brand-image" class="form-control" id="brand-name">
+                      <input type="hidden" name="currentImage" value="{{ empty($brand['image'])?'':$brand['image'] }}">
+                      @if (!empty($brand['image']))
+                        <a href="{{ url('admin/images/brands/'.$brand['image']) }}" target="_blank" rel="noopener noreferrer">view image</a>
+                      @endif
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Enter New Password</label>
-                      <input type="password" name="newpassword" class="form-control" id="exampleInputPassword1" placeholder="New Password">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputConfirmPassword1">Enter Confirm Password</label>
-                      <input type="password" name="confirm_password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-check form-check-flat form-check-primary">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                        Remember me
-                      </label>
-                    </div>
+
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button type="reset" class="btn btn-light">Cancel</button>
+                    <button type="reset" class="btn btn-light" type="reset">Cancel</button>
                   </form>
                 </div>
               </div>
@@ -90,3 +90,4 @@
 </div>
 </div>
 @endsection
+
